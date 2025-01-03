@@ -1,12 +1,26 @@
-name: Redis Service Example
+name: The Internet Selenium Python
 on: push
-
 jobs:
-  runner-job:
+  test:
     runs-on: ubuntu-latest
 
-    services:
-      the-internet:
-        image: gprestes/the-internet
-        ports:
-          - 7080:5000
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade
+          pip install -r requirements.txt
+
+      - name: Pull and run Docker container
+        run: |
+          docker run -d -p 7080:5000 gprestes/the-internet
+
+
+
