@@ -1,8 +1,7 @@
 from utils.create_driver import create_chrome_driver
-
 from selenium.webdriver.common.by import By
 
-class TestAB:
+class TestSmoke:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
 		self.driver.get('http://localhost:7080')
