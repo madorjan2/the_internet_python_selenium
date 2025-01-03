@@ -16,7 +16,7 @@ def invalid_interceptor(request):
 
 class TestBasicAuth:
 	def setup_method(self):
-		self.driver = create_chrome_driver_wired(True)
+		self.driver = create_chrome_driver_wired()
 
 	def teardown_method(self):
 		self.driver.quit()
