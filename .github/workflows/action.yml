@@ -24,7 +24,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          pytest ./tests
+          PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest ./tests
 
       - name: Stop and remove Docker container
         run: |
