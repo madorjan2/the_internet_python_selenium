@@ -22,5 +22,13 @@ jobs:
         run: |
           docker run -d -p 7080:5000 gprestes/the-internet
 
+      - name: Run pytest
+        run: |
+          python main.py
+
+      - name: Stop and remove Docker container
+        run: |
+          docker stop $(docker ps -q -f name=the-internet)
+          docker rm $(docker ps -q -f name=the-internet)
 
 
