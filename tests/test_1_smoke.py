@@ -1,4 +1,4 @@
-from utils.create_driver import create_chrome_driver
+from ..utils.create_driver import create_chrome_driver
 
 from selenium.webdriver.common.by import By
 
