@@ -10,12 +10,3 @@ def create_chrome_driver(dev_mode=False):
 	driver = webdriver.Chrome(options)
 	driver.maximize_window()
 	return driver
-
-driver = create_chrome_driver()
-driver.get('http://localhost:7080')
-
-from selenium.webdriver.common.by import By
-
-print(driver.find_element(By.TAG_NAME, 'h1').text)
-
-driver.quit()

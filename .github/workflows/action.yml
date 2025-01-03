@@ -24,7 +24,7 @@ jobs:
 
       - name: Run pytest
         run: |
-          python main.py
+          pytest ./tests
 
       - name: Stop and remove Docker container
         run: |
