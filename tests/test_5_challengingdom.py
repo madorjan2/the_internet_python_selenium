@@ -14,6 +14,15 @@ import os
 from PIL import Image
 
 
+def read_expected():
+	this_folder_path = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir))
+	path = os.path.join(this_folder_path, 'test_data', 'test_5.csv')
+	with open(path, 'r') as testdata_csv:
+		csv_reader = csv.reader(testdata_csv)
+		testdata_list = list(csv_reader)
+	return testdata_list
+
+
 class TestChallengingDom:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
@@ -30,14 +39,6 @@ class TestChallengingDom:
 
 	def get_button3(self):
 		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button success"]')))
-
-	def read_expected(self):
-		this_folder_path = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir))
-		path = os.path.join(this_folder_path, 'test_data', 'test_5.csv')
-		with open(path, 'r') as testdata_csv:
-			csv_reader = csv.reader(testdata_csv)
-			testdata_list = list(csv_reader)
-		return testdata_list
 
 	def get_table(self):
 		return WebDriverWait(self.driver, 3).until((EC.visibility_of_element_located((By.TAG_NAME, 'table'))))
@@ -63,7 +64,7 @@ class TestChallengingDom:
 		for tr in trs:
 			tds = tr.find_elements(By.TAG_NAME, 'td')
 			table_content.append([td.text for td in tds])
-		assert table_content == self.read_expected()
+		assert table_content == read_expected()
 
 	def test_image(self):
 		canvas = self.driver.find_element(By.ID, 'canvas')
