@@ -7,6 +7,9 @@ from selenium.webdriver.support import expected_conditions as EC
 import csv
 import base64
 import pytesseract
+import io
+from PIL import Image
+
 
 class TestChallengingDom:
 	def setup_method(self):
@@ -60,9 +63,6 @@ class TestChallengingDom:
 	def test_image(self):
 		canvas = self.driver.find_element(By.ID, 'canvas')
 		img_base64 = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
-		img_png = base64.b64decode(img_base64)
-		img_path = './test_data/test_5.png'
-		with open(img_path, 'wb') as img_file:
-			img_file.write(img_png)
-		num = pytesseract.image_to_string(img_path).split(': ')[1].strip()
+		img_data = Image.open(io.BytesIO(base64.b64decode(img_base64)))
+		num = pytesseract.image_to_string(img_data).split(': ')[1].strip()
 		assert num == self.get_num_from_dom()
