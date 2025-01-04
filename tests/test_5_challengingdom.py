@@ -1,3 +1,5 @@
+
+
 from utils.create_driver import create_chrome_driver
 
 from selenium.webdriver.common.by import By
@@ -8,6 +10,7 @@ import csv
 import base64
 import pytesseract
 import io
+import os
 from PIL import Image
 
 
@@ -29,7 +32,9 @@ class TestChallengingDom:
 		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button success"]')))
 
 	def read_expected(self):
-		with open('./test_data/test_5.csv', 'r') as testdata_csv:
+		this_folder_path = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir))
+		path = os.path.join(this_folder_path, 'test_data', 'test_5.csv')
+		with open(path, 'r') as testdata_csv:
 			csv_reader = csv.reader(testdata_csv)
 			testdata_list = list(csv_reader)
 		return testdata_list
