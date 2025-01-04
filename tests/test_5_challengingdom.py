@@ -26,7 +26,7 @@ class TestChallengingDom:
 		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button success"]')))
 
 	def read_expected(self):
-		with open('test_data/test_5.csv', 'r') as testdata_csv:
+		with open('./test_data/test_5.csv', 'r') as testdata_csv:
 			csv_reader = csv.reader(testdata_csv)
 			testdata_list = list(csv_reader)
 		return testdata_list
@@ -61,7 +61,7 @@ class TestChallengingDom:
 		canvas = self.driver.find_element(By.ID, 'canvas')
 		img_base64 = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
 		img_png = base64.b64decode(img_base64)
-		img_path = 'test_data/test_5.png'
+		img_path = './test_data/test_5.png'
 		with open(img_path, 'wb') as img_file:
 			img_file.write(img_png)
 		num = pytesseract.image_to_string(img_path).split(': ')[1].strip()
