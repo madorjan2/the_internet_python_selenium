@@ -1,10 +1,8 @@
-from scipy.stats import false_discovery_control
-from selenium.common import TimeoutException
-
 from utils.create_driver import create_chrome_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common import TimeoutException
 
 
 class TestDisappearingElements:
