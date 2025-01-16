@@ -34,3 +34,4 @@ class TestDisappearingElements:
 				self.driver.refresh()
 				is_present = self.is_gallery_present()
 			assert counter < 100
+			
