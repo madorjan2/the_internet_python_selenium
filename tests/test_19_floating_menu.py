@@ -35,12 +35,14 @@ class TestFloatingMenu:
 
 	def test_selenium_scroll_by(self):
 		ActionChains(self.driver).scroll_by_amount(0, 2000).perform()
+		time.sleep(0.5)
 		self.are_we_scrolled_down()
 		self.are_elements_visible()
 
 	def test_selenium_scroll_to_element(self):
 		a_bottom_of_page = WebDriverWait(self.driver, 2).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Elemental Selenium')))
 		ActionChains(self.driver).scroll_to_element(a_bottom_of_page).perform()
+		time.sleep(0.5)
 		self.are_we_scrolled_down()
 		self.are_elements_visible()
 
@@ -68,5 +70,6 @@ class TestFloatingMenu:
 		body = self.driver.find_element(By.TAG_NAME, 'body')
 		body.send_keys(Keys.PAGE_DOWN)
 		body.send_keys(Keys.PAGE_DOWN)
+		time.sleep(0.5)
 		self.are_we_scrolled_down()
 		self.are_elements_visible()

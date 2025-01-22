@@ -20,7 +20,7 @@ class TestDynamicContent:
 	def test_dynamic_content(self):
 		profile_pics = []
 		descriptions = []
-		for i in range(3):
+		for i in range(10):
 			current_pics = WebDriverWait(self.driver, 2).until(EC.visibility_of_all_elements_located((By.XPATH, '//div[@id="content"]//img')))
 			profile_pics.append([element.get_attribute('src') for element in current_pics])
 			current_desc = WebDriverWait(self.driver, 2).until(EC.visibility_of_all_elements_located((By.XPATH, '//div[@id="content"]//div[@class="large-10 columns"]')))
