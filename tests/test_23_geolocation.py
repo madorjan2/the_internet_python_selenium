@@ -9,7 +9,7 @@ TEST_DATA = {
     "longitude": 9.8765,
     "accuracy": 100
 }
-class TestIframe:
+class TestGeolocation:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
 		self.driver.execute_cdp_cmd("Page.setGeolocationOverride", TEST_DATA)
