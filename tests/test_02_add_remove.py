@@ -1,6 +1,7 @@
 from utils.create_driver import create_chrome_driver
 from selenium.webdriver.common.by import By
 
+
 class TestAddRemoveElement:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
@@ -10,13 +11,21 @@ class TestAddRemoveElement:
 		self.driver.quit()
 
 	def add_element(self):
-		self.driver.find_element(By.XPATH, '//button[text()="Add Element"]').click()
+		self.driver.find_element(
+			By.XPATH, '//button[text()="Add Element"]'
+		).click()
 
 	def get_number_of_elements(self):
-		return len(self.driver.find_elements(By.XPATH, '//div[@id="elements"]//button'))
+		return len(
+			self.driver.find_elements(
+				By.XPATH, '//div[@id="elements"]//button'
+			)
+		)
 
 	def delete_first_element(self):
-		self.driver.find_elements(By.XPATH, '//div[@id="elements"]//button')[0].click()
+		self.driver.find_elements(By.XPATH, '//div[@id="elements"]//button')[
+			0
+		].click()
 
 	def test_add_element(self):
 		self.add_element()

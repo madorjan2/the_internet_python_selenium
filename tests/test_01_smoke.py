@@ -1,6 +1,7 @@
 from utils.create_driver import create_chrome_driver
 from selenium.webdriver.common.by import By
 
+
 class TestSmoke:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
@@ -10,5 +11,8 @@ class TestSmoke:
 		self.driver.quit()
 
 	def test_title(self):
-		assert self.driver.find_element(By.TAG_NAME, 'h1').text == 'Welcome to the-internet'
+		assert (
+			self.driver.find_element(By.TAG_NAME, 'h1').text
+			== 'Welcome to the-internet'
+		)
 		assert len(self.driver.find_elements(By.TAG_NAME, 'li')) == 44

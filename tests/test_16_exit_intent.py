@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class TestExitIntent:
 	def setup_method(self):
 		self.driver = create_chrome_driver()
@@ -15,5 +16,13 @@ class TestExitIntent:
 		# I have not found a way to simulate moving the cursor outside the browser window in headless mode
 		# therefore I am triggering the event directly
 		self.driver.execute_script('_ouibounce.fire()')
-		WebDriverWait(self.driver, 2).until(EC.element_to_be_clickable((By.XPATH, '//div[@class="modal-footer"]/p'))).click()
-		WebDriverWait(self.driver, 2).until(EC.invisibility_of_element_located((By.XPATH, '//div[@class="modal-footer"]/p')))
+		WebDriverWait(self.driver, 2).until(
+			EC.element_to_be_clickable(
+				(By.XPATH, '//div[@class="modal-footer"]/p')
+			)
+		).click()
+		WebDriverWait(self.driver, 2).until(
+			EC.invisibility_of_element_located(
+				(By.XPATH, '//div[@class="modal-footer"]/p')
+			)
+		)

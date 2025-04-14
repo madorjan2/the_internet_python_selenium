@@ -13,7 +13,9 @@ from PIL import Image
 
 
 def read_expected():
-	this_folder_path = os.path.abspath(os.path.join(os.path.realpath(__file__), os.pardir))
+	this_folder_path = os.path.abspath(
+		os.path.join(os.path.realpath(__file__), os.pardir)
+	)
 	path = os.path.join(this_folder_path, 'test_data', 'test_5.csv')
 	with open(path, 'r') as testdata_csv:
 		csv_reader = csv.reader(testdata_csv)
@@ -30,22 +32,38 @@ class TestChallengingDom:
 		self.driver.quit()
 
 	def get_button1(self):
-		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button"]')))
+		return WebDriverWait(self.driver, 3).until(
+			EC.element_to_be_clickable((By.XPATH, '//a[@class="button"]'))
+		)
 
 	def get_button2(self):
-		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button alert"]')))
+		return WebDriverWait(self.driver, 3).until(
+			EC.element_to_be_clickable(
+				(By.XPATH, '//a[@class="button alert"]')
+			)
+		)
 
 	def get_button3(self):
-		return WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable((By.XPATH, '//a[@class="button success"]')))
+		return WebDriverWait(self.driver, 3).until(
+			EC.element_to_be_clickable(
+				(By.XPATH, '//a[@class="button success"]')
+			)
+		)
 
 	def get_table(self):
-		return WebDriverWait(self.driver, 3).until((EC.visibility_of_element_located((By.TAG_NAME, 'table'))))
+		return WebDriverWait(self.driver, 3).until(
+			(EC.visibility_of_element_located((By.TAG_NAME, 'table')))
+		)
 
 	def get_num_from_dom(self):
 		scripts = self.driver.find_elements(By.TAG_NAME, 'script')
 		for script in scripts:
 			if 'Answer: ' in script.get_attribute('innerHTML'):
-				return script.get_attribute('innerHTML').split('Answer: ')[1].split('\'')[0]
+				return (
+					script.get_attribute('innerHTML')
+					.split('Answer: ')[1]
+					.split("'")[0]
+				)
 		raise ValueError('No script tag with an answer on page')
 
 	def test_buttons(self):
@@ -66,7 +84,9 @@ class TestChallengingDom:
 
 	def test_image(self):
 		canvas = self.driver.find_element(By.ID, 'canvas')
-		img_base64 = self.driver.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
+		img_base64 = self.driver.execute_script(
+			"return arguments[0].toDataURL('image/png').substring(21);", canvas
+		)
 		img_data = Image.open(io.BytesIO(base64.b64decode(img_base64)))
 		num = pytesseract.image_to_string(img_data).split(': ')[1].strip()
 		assert num == self.get_num_from_dom()

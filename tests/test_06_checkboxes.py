@@ -31,7 +31,9 @@ class TestCheckboxes:
 		self.driver.quit()
 
 	def test_checkboxes(self):
-		form = WebDriverWait(self.driver, 3).until(EC.visibility_of_element_located((By.ID, 'checkboxes')))
+		form = WebDriverWait(self.driver, 3).until(
+			EC.visibility_of_element_located((By.ID, 'checkboxes'))
+		)
 		cb1, cb2 = form.find_elements(By.TAG_NAME, 'input')
 		untick_cb(cb1)
 		untick_cb(cb2)

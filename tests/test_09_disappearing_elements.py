@@ -15,7 +15,9 @@ class TestDisappearingElements:
 
 	def is_gallery_present(self):
 		try:
-			WebDriverWait(self.driver, 1).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Gallery')))
+			WebDriverWait(self.driver, 1).until(
+				EC.element_to_be_clickable((By.LINK_TEXT, 'Gallery'))
+			)
 			return True
 		except TimeoutException:
 			return False
@@ -34,4 +36,3 @@ class TestDisappearingElements:
 				self.driver.refresh()
 				is_present = self.is_gallery_present()
 			assert counter < 100
-			

@@ -17,18 +17,30 @@ class TestFloatingMenu:
 		self.driver.quit()
 
 	def are_we_scrolled_down(self):
-		menu_style = WebDriverWait(self.driver, 2).until(EC.presence_of_element_located((By.ID, 'menu'))).get_attribute('style')
+		menu_style = (
+			WebDriverWait(self.driver, 2)
+			.until(EC.presence_of_element_located((By.ID, 'menu')))
+			.get_attribute('style')
+		)
 		assert float(menu_style[5:-3]) > 0
 
 	def are_elements_visible(self):
 		try:
-			WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.LINK_TEXT, 'Home'))).click()
+			WebDriverWait(self.driver, 2).until(
+				EC.visibility_of_element_located((By.LINK_TEXT, 'Home'))
+			).click()
 			assert self.driver.current_url == self.url + '#home'
-			WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.LINK_TEXT, 'News'))).click()
+			WebDriverWait(self.driver, 2).until(
+				EC.visibility_of_element_located((By.LINK_TEXT, 'News'))
+			).click()
 			assert self.driver.current_url == self.url + '#news'
-			WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.LINK_TEXT, 'Contact'))).click()
+			WebDriverWait(self.driver, 2).until(
+				EC.visibility_of_element_located((By.LINK_TEXT, 'Contact'))
+			).click()
 			assert self.driver.current_url == self.url + '#contact'
-			WebDriverWait(self.driver, 2).until(EC.visibility_of_element_located((By.LINK_TEXT, 'About'))).click()
+			WebDriverWait(self.driver, 2).until(
+				EC.visibility_of_element_located((By.LINK_TEXT, 'About'))
+			).click()
 			assert self.driver.current_url == self.url + '#about'
 		except Exception as e:
 			raise AssertionError(e)
@@ -40,7 +52,9 @@ class TestFloatingMenu:
 		self.are_elements_visible()
 
 	def test_selenium_scroll_to_element(self):
-		a_bottom_of_page = WebDriverWait(self.driver, 2).until(EC.element_to_be_clickable((By.LINK_TEXT, 'Elemental Selenium')))
+		a_bottom_of_page = WebDriverWait(self.driver, 2).until(
+			EC.element_to_be_clickable((By.LINK_TEXT, 'Elemental Selenium'))
+		)
 		ActionChains(self.driver).scroll_to_element(a_bottom_of_page).perform()
 		time.sleep(0.5)
 		self.are_we_scrolled_down()
@@ -60,8 +74,11 @@ class TestFloatingMenu:
 
 	def test_javascript_scroll_into_view(self):
 		a_bottom_of_page = WebDriverWait(self.driver, 2).until(
-			EC.element_to_be_clickable((By.LINK_TEXT, 'Elemental Selenium')))
-		self.driver.execute_script("arguments[0].scrollIntoView()", a_bottom_of_page)
+			EC.element_to_be_clickable((By.LINK_TEXT, 'Elemental Selenium'))
+		)
+		self.driver.execute_script(
+			'arguments[0].scrollIntoView()', a_bottom_of_page
+		)
 		time.sleep(0.5)
 		self.are_we_scrolled_down()
 		self.are_elements_visible()
