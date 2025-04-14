@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 
 def is_ticked(cb):
-	return not (cb.get_attribute('checked') is None)
+	return cb.get_attribute('checked') is not None
 
 
 def toggle_cb(cb):

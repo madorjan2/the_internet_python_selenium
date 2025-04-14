@@ -31,7 +31,7 @@ class TestNestedFrames:
 
 		self.driver.switch_to.parent_frame()
 		frame = WebDriverWait(self.driver, 5).until(
-			EC.presence_of_element_located((By.NAME, f'frame-bottom'))
+			EC.presence_of_element_located((By.NAME, 'frame-bottom'))
 		)
 		self.driver.switch_to.frame(frame)
 		assert self.driver.find_element(By.TAG_NAME, 'body').text == 'BOTTOM'

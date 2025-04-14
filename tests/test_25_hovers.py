@@ -8,7 +8,7 @@ from selenium.webdriver import ActionChains
 
 class TestHovers:
 	def setup_method(self):
-		self.driver = create_chrome_driver(dev_mode=True)
+		self.driver = create_chrome_driver(dev_mode=False)
 		self.driver.get('http://localhost:7080/hovers')
 
 	def teardown_method(self):

@@ -1,0 +1,53 @@
+from selenium.common import TimeoutException
+
+from utils.create_driver import create_chrome_driver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains, Keys
+
+
+class TestHovers:
+	def setup_method(self):
+		self.driver = create_chrome_driver(dev_mode=False)
+		self.driver.get('http://localhost:7080/infinite_scroll')
+
+	def teardown_method(self):
+		self.driver.quit()
+
+	def get_num_of_paragraphs(self):
+		return len(
+			WebDriverWait(self.driver, 5).until(
+				EC.visibility_of_all_elements_located(
+					(By.XPATH, '//div[@class="jscroll-added"]')
+				)
+			)
+		)
+
+	def test_scroll_by_page_down(self):
+		for _ in range(10):
+			orig_num = self.get_num_of_paragraphs()
+			ActionChains(self.driver).send_keys(Keys.PAGE_DOWN).perform()
+			try:
+				WebDriverWait(self.driver, 10).until(
+					lambda driver: self.get_num_of_paragraphs() > orig_num
+				)
+			except TimeoutException:
+				raise AssertionError(
+					'No new paragraph appeared upon scrolling to the bottom'
+				)
+
+	def test_scroll_by_javascript(self):
+		for _ in range(10):
+			orig_num = self.get_num_of_paragraphs()
+			self.driver.execute_script(
+				'window.scrollTo(0, document.body.scrollHeight);'
+			)
+			try:
+				WebDriverWait(self.driver, 10).until(
+					lambda driver: self.get_num_of_paragraphs() > orig_num
+				)
+			except TimeoutException:
+				raise AssertionError(
+					'No new paragraph appeared upon scrolling to the bottom'
+				)
