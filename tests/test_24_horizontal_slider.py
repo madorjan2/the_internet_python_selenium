@@ -1,20 +1,18 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains, Keys
 
 
-class TestHorizontalSlider:
+class TestHorizontalSlider(BaseTest):
+	page_url = '/horizontal_slider'
+
 	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/horizontal_slider')
+		super().setup_method()
 		self.slider = WebDriverWait(self.driver, 5).until(
 			EC.element_to_be_clickable((By.TAG_NAME, 'input'))
 		)
-
-	def teardown_method(self):
-		self.driver.quit()
 
 	def test_click_in_the_middle_by_rect(self):
 		# move_to_element moves the cursor to the middle of the element

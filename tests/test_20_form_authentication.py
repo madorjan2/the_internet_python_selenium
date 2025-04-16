@@ -1,16 +1,11 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestFormAuthentication:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/login')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestFormAuthentication(BaseTest):
+	page_url = '/login'
 
 	def test_form_authentication(self):
 		username, password = [

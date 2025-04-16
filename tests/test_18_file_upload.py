@@ -1,6 +1,6 @@
 import os
 
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -14,13 +14,8 @@ def get_test_data_path():
 	return path
 
 
-class TestFileUpload:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/upload')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestFileUpload(BaseTest):
+	page_url = '/upload'
 
 	def test_file_upload(self):
 		WebDriverWait(self.driver, 5).until(

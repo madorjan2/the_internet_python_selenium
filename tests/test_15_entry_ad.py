@@ -1,17 +1,12 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
 
-class TestEntryAd:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/entry_ad')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestEntryAd(BaseTest):
+	page_url = 'http://localhost:7080/entry_ad'
 
 	def test_entry_ad(self):
 		# JS click is needed, because WebElement.click() leads to ElementClickInterceptedException sometimes

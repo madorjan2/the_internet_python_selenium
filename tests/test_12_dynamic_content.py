@@ -1,26 +1,22 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestDynamicContent:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/dynamic_content')
+def are_different(str_list):
+	zeroths = [str_list[i][0] for i in range(len(str_list))]
+	firsts = [str_list[i][1] for i in range(len(str_list))]
+	seconds = [str_list[i][2] for i in range(len(str_list))]
+	return (
+		len(set(zeroths)) > 1
+		and len(set(firsts)) > 1
+		and len(set(seconds)) > 1
+	)
 
-	def teardown_method(self):
-		self.driver.quit()
 
-	def are_different(self, str_list):
-		zeroths = [str_list[i][0] for i in range(len(str_list))]
-		firsts = [str_list[i][1] for i in range(len(str_list))]
-		seconds = [str_list[i][2] for i in range(len(str_list))]
-		return (
-			len(set(zeroths)) > 1
-			and len(set(firsts)) > 1
-			and len(set(seconds)) > 1
-		)
+class TestDynamicContent(BaseTest):
+	page_url = '/dynamic_content'
 
 	def test_dynamic_content(self):
 		profile_pics = []
@@ -44,6 +40,4 @@ class TestDynamicContent:
 			)
 			descriptions.append([element.text for element in current_desc])
 			self.driver.refresh()
-		assert self.are_different(profile_pics) and self.are_different(
-			descriptions
-		)
+		assert are_different(profile_pics) and are_different(descriptions)

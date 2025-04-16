@@ -1,4 +1,4 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -6,13 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 
 
-class TestHovers:
-	def setup_method(self):
-		self.driver = create_chrome_driver(dev_mode=False)
-		self.driver.get('http://localhost:7080/hovers')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestHovers(BaseTest):
+	page_url = '/hovers'
 
 	def hover_over(self, elem: WebElement):
 		ActionChains(self.driver).move_to_element(elem).perform()

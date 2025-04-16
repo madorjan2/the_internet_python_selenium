@@ -1,20 +1,15 @@
 import time
 
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains, Keys
 
 
-class TestFloatingMenu:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.url = 'http://localhost:7080/floating_menu'
-		self.driver.get(self.url)
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestFloatingMenu(BaseTest):
+	page_url = '/floating_menu'
+	url = 'http://localhost:7080/floating_menu'
 
 	def are_we_scrolled_down(self):
 		menu_style = (

@@ -1,4 +1,4 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -23,13 +23,8 @@ def read_expected():
 	return testdata_list
 
 
-class TestChallengingDom:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/challenging_dom')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestChallengingDom(BaseTest):
+	page_url = '/challenging_dom'
 
 	def get_button1(self):
 		return WebDriverWait(self.driver, 3).until(

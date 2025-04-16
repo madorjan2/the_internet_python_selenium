@@ -1,17 +1,12 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import TimeoutException
 
 
-class TestDisappearingElements:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/disappearing_elements')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestDisappearingElements(BaseTest):
+	page_url = '/disappearing_elements'
 
 	def is_gallery_present(self):
 		try:

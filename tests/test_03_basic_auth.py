@@ -1,4 +1,6 @@
 import base64
+
+from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver_wired
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -16,12 +18,9 @@ def invalid_interceptor(request):
 	request.headers['Authorization'] = f'Basic {invalid_auth}'
 
 
-class TestBasicAuth:
+class TestBasicAuth(BaseTest):
 	def setup_method(self):
 		self.driver = create_chrome_driver_wired()
-
-	def teardown_method(self):
-		self.driver.quit()
 
 	def test_valid_login(self):
 		self.driver.request_interceptor = valid_interceptor

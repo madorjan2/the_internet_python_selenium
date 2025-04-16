@@ -1,16 +1,11 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestDynamicLoading:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/dynamic_loading')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestDynamicLoading(BaseTest):
+	page_url = '/dynamic_loading'
 
 	def test_hidden_element(self):
 		WebDriverWait(self.driver, 2).until(

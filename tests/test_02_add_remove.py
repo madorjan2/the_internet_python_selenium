@@ -1,14 +1,9 @@
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 
 
-class TestAddRemoveElement:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/add_remove_elements/')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestAddRemoveElement(BaseTest):
+	page_url = '/add_remove_elements/'
 
 	def add_element(self):
 		self.driver.find_element(

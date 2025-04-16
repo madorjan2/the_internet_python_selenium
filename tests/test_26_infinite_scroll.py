@@ -1,19 +1,14 @@
 from selenium.common import TimeoutException
 
-from utils.create_driver import create_chrome_driver
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains, Keys
 
 
-class TestHovers:
-	def setup_method(self):
-		self.driver = create_chrome_driver(dev_mode=False)
-		self.driver.get('http://localhost:7080/infinite_scroll')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestHovers(BaseTest):
+	page_url = '/infinite_scroll'
 
 	def get_num_of_paragraphs(self):
 		return len(

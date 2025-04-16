@@ -1,15 +1,13 @@
+from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestDigestAuth:
+class TestDigestAuth(BaseTest):
 	def setup_method(self):
 		self.driver = create_chrome_driver()
-
-	def teardown_method(self):
-		self.driver.quit()
 
 	def test_context_menu_positive(self):
 		self.driver.get('http://admin:admin@localhost:7080/digest_auth')

@@ -1,18 +1,14 @@
 import pytest
-from utils.create_driver import create_chrome_driver
+
+from utils.base_test import BaseTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 
 
-class TestDropdown:
-	def setup_method(self):
-		self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080/dropdown')
-
-	def teardown_method(self):
-		self.driver.quit()
+class TestDropdown(BaseTest):
+	page_url = '/dropdown'
 
 	def test_dropdown(self):
 		my_select = Select(
