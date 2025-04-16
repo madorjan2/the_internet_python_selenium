@@ -14,6 +14,7 @@ def create_download_directory():
 		os.path.join(os.path.realpath(__file__), os.pardir)
 	)
 	path = os.path.join(this_folder_path, 'downloads')
+	return path
 
 class TestInputs(BaseTest):
 	page_url = '/jqueryui/menu'
