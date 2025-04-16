@@ -1,4 +1,4 @@
-# ToDo: find way to remove time.sleep
+
 import time
 
 from utils.base_test import BaseTest
@@ -11,6 +11,8 @@ from selenium.webdriver.support import expected_conditions as EC
 class TestEntryAd(BaseTest):
 	page_url = '/entry_ad'
 
+	# ToDo: find way to remove time.sleep
+	# ToDo: flaky at the last WebDriverWait in headless for some reason
 	def test_entry_ad(self):
 		# JS click is needed, because WebElement.click() leads to ElementClickInterceptedException sometimes
 		# element click intercepted: Element <p>...</p> is not clickable at point (949, 592). Other element would receive the click: <div class="modal">...</div>
