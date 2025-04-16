@@ -23,6 +23,12 @@ jobs:
           pip install --upgrade setuptools
           pip install -r requirements.txt
 
+      - name: Installing and running Ruff
+        uses: astral-sh/ruff-action@v3
+        run: |
+          ruff check --fix
+          ruff format
+
       - name: Pull and run Docker container
         run: |
           docker run -d -p 7080:5000 gprestes/the-internet
