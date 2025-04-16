@@ -1,7 +1,6 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -27,7 +26,7 @@ class TestCheckboxes(BaseTest):
 	page_url = '/checkboxes'
 
 	def test_checkboxes(self):
-		form = WebDriverWait(self.driver, 3).until(
+		form = self.wait.until(
 			EC.visibility_of_element_located((By.ID, 'checkboxes'))
 		)
 		cb1, cb2 = form.find_elements(By.TAG_NAME, 'input')

@@ -1,7 +1,6 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import TimeoutException
 
@@ -11,7 +10,7 @@ class TestDisappearingElements(BaseTest):
 
 	def is_gallery_present(self):
 		try:
-			WebDriverWait(self.driver, 1).until(
+			self.wait.until(
 				EC.element_to_be_clickable((By.LINK_TEXT, 'Gallery'))
 			)
 			return True
@@ -25,10 +24,12 @@ class TestDisappearingElements(BaseTest):
 			while is_present and counter < 100:
 				self.driver.refresh()
 				is_present = self.is_gallery_present()
+				counter += 1
 			assert counter < 100
 		else:
 			counter = 0
 			while not is_present and counter < 100:
 				self.driver.refresh()
 				is_present = self.is_gallery_present()
+				counter += 1
 			assert counter < 100

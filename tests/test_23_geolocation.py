@@ -2,7 +2,6 @@ from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -16,12 +15,12 @@ class TestGeolocation(BaseTest):
 		self.driver.get('http://localhost:7080/geolocation')
 
 	def test_geolocation(self):
-		WebDriverWait(self.driver, 5).until(
+		self.wait.until(
 			EC.element_to_be_clickable((By.TAG_NAME, 'button'))
 		).click()
-		assert WebDriverWait(self.driver, 5).until(
+		assert self.wait.until(
 			(EC.visibility_of_element_located((By.ID, 'lat-value')))
 		).text == str(TEST_DATA['latitude'])
-		assert WebDriverWait(self.driver, 5).until(
+		assert self.wait.until(
 			(EC.visibility_of_element_located((By.ID, 'long-value')))
 		).text == str(TEST_DATA['longitude'])

@@ -1,14 +1,17 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 class TestAddRemoveElement(BaseTest):
 	page_url = '/add_remove_elements/'
 
 	def add_element(self):
-		self.driver.find_element(
-			By.XPATH, '//button[text()="Add Element"]'
+		self.wait.until(
+			EC.element_to_be_clickable(
+				(By.XPATH, '//button[text()="Add Element"]')
+			)
 		).click()
 
 	def get_number_of_elements(self):

@@ -1,7 +1,6 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 import csv
@@ -27,26 +26,26 @@ class TestChallengingDom(BaseTest):
 	page_url = '/challenging_dom'
 
 	def get_button1(self):
-		return WebDriverWait(self.driver, 3).until(
+		return self.wait.until(
 			EC.element_to_be_clickable((By.XPATH, '//a[@class="button"]'))
 		)
 
 	def get_button2(self):
-		return WebDriverWait(self.driver, 3).until(
+		return self.wait.until(
 			EC.element_to_be_clickable(
 				(By.XPATH, '//a[@class="button alert"]')
 			)
 		)
 
 	def get_button3(self):
-		return WebDriverWait(self.driver, 3).until(
+		return self.wait.until(
 			EC.element_to_be_clickable(
 				(By.XPATH, '//a[@class="button success"]')
 			)
 		)
 
 	def get_table(self):
-		return WebDriverWait(self.driver, 3).until(
+		return self.wait.until(
 			(EC.visibility_of_element_located((By.TAG_NAME, 'table')))
 		)
 

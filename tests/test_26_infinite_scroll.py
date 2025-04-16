@@ -1,7 +1,6 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains, Keys
 from selenium.common import TimeoutException
@@ -12,7 +11,7 @@ class TestHovers(BaseTest):
 
 	def get_num_of_paragraphs(self):
 		return len(
-			WebDriverWait(self.driver, 5).until(
+			self.wait.until(
 				EC.visibility_of_all_elements_located(
 					(By.XPATH, '//div[@class="jscroll-added"]')
 				)
@@ -24,7 +23,7 @@ class TestHovers(BaseTest):
 			orig_num = self.get_num_of_paragraphs()
 			ActionChains(self.driver).send_keys(Keys.PAGE_DOWN).perform()
 			try:
-				WebDriverWait(self.driver, 10).until(
+				self.wait.until(
 					lambda driver: self.get_num_of_paragraphs() > orig_num
 				)
 			except TimeoutException:
@@ -39,7 +38,7 @@ class TestHovers(BaseTest):
 				'window.scrollTo(0, document.body.scrollHeight);'
 			)
 			try:
-				WebDriverWait(self.driver, 10).until(
+				self.wait.until(
 					lambda driver: self.get_num_of_paragraphs() > orig_num
 				)
 			except TimeoutException:

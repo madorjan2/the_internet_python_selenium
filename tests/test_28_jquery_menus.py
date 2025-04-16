@@ -4,9 +4,8 @@ import time
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver import Keys
+
 
 def is_file_present_in_downloads(filename):
 	this_folder_path = os.path.abspath(
@@ -15,6 +14,7 @@ def is_file_present_in_downloads(filename):
 	path = os.path.join(this_folder_path, 'downloads', filename)
 	return os.path.exists(path)
 
+
 def is_file_downloaded(filename):
 	n_of_tries = 0
 	while not is_file_present_in_downloads(filename) and n_of_tries < 50:
@@ -22,17 +22,24 @@ def is_file_downloaded(filename):
 		time.sleep(0.1)
 	return is_file_present_in_downloads(filename)
 
+
 class TestInputs(BaseTest):
 	page_url = '/jqueryui/menu'
 
 	def click_jquery_element_by_id(self, id):
-		button = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable((By.ID, id)))
-		self.driver.execute_script("arguments[0].click();", button)
+		button = self.wait.until(EC.element_to_be_clickable((By.ID, id)))
+		self.driver.execute_script('arguments[0].click();', button)
 
 	# in the JQuery menu, the button is considered enabled by Selenium even when disabled
 	def test_first_button_is_disabled(self):
-		disabled_button_parent = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.XPATH, '//a[@id="ui-id-1"]/..')))
-		assert "ui-state-disabled" in disabled_button_parent.get_attribute('class')
+		disabled_button_parent = self.wait.until(
+			EC.visibility_of_element_located(
+				(By.XPATH, '//a[@id="ui-id-1"]/..')
+			)
+		)
+		assert 'ui-state-disabled' in disabled_button_parent.get_attribute(
+			'class'
+		)
 
 	# we get ElementClickIntercepted if we try to click regularly, therefore Javascript clicking is necessary
 	def test_download_pdf(self):
@@ -57,4 +64,3 @@ class TestInputs(BaseTest):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-5')
 		assert self.driver.current_url == 'http://localhost:7080/jqueryui'
-

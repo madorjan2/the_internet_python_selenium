@@ -3,7 +3,6 @@ import pytest
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import Keys
 
@@ -13,7 +12,7 @@ class TestInputs(BaseTest):
 
 	def setup_method(self):
 		super().setup_method()
-		self.input_field = WebDriverWait(self.driver, 5).until(
+		self.input_field = self.wait.until(
 			EC.element_to_be_clickable((By.TAG_NAME, 'input'))
 		)
 

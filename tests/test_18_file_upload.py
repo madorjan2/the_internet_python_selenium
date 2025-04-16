@@ -3,7 +3,6 @@ import os
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -19,15 +18,15 @@ class TestFileUpload(BaseTest):
 	page_url = '/upload'
 
 	def test_file_upload(self):
-		WebDriverWait(self.driver, 5).until(
+		self.wait.until(
 			EC.element_to_be_clickable((By.ID, 'file-upload'))
 		).send_keys(get_test_data_path())
-		WebDriverWait(self.driver, 5).until(
+		self.wait.until(
 			EC.element_to_be_clickable((By.ID, 'file-submit'))
 		).click()
 		assert (
-			WebDriverWait(self.driver, 5)
-			.until(EC.visibility_of_element_located((By.ID, 'uploaded-files')))
-			.text
+			self.wait.until(
+				EC.visibility_of_element_located((By.ID, 'uploaded-files'))
+			).text
 			== 'test_data_17.txt'
 		)

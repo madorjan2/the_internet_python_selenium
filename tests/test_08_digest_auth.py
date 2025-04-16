@@ -2,7 +2,6 @@ from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -13,9 +12,9 @@ class TestDigestAuth(BaseTest):
 	def test_context_menu_positive(self):
 		self.driver.get('http://admin:admin@localhost:7080/digest_auth')
 		assert (
-			WebDriverWait(self.driver, 5)
-			.until(EC.visibility_of_element_located((By.TAG_NAME, 'h3')))
-			.text
+			self.wait.until(
+				EC.visibility_of_element_located((By.TAG_NAME, 'h3'))
+			).text
 			== 'Digest Auth'
 		)
 

@@ -4,7 +4,6 @@ from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver_wired
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 valid_auth = base64.encodebytes('admin:admin'.encode()).decode().strip()
@@ -26,10 +25,10 @@ class TestBasicAuth(BaseTest):
 	def test_valid_login(self):
 		self.driver.request_interceptor = valid_interceptor
 		self.driver.get('http://localhost:7080/basic_auth')
-		h3 = WebDriverWait(self.driver, 3).until(
+		h3 = self.wait.until(
 			EC.visibility_of_element_located((By.TAG_NAME, 'h3'))
 		)
-		p = WebDriverWait(self.driver, 3).until(
+		p = self.wait.until(
 			EC.visibility_of_element_located((By.TAG_NAME, 'p'))
 		)
 		assert h3.text == 'Basic Auth'

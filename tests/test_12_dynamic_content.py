@@ -1,7 +1,6 @@
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
@@ -23,7 +22,7 @@ class TestDynamicContent(BaseTest):
 		profile_pics = []
 		descriptions = []
 		for i in range(10):
-			current_pics = WebDriverWait(self.driver, 2).until(
+			current_pics = self.wait.until(
 				EC.visibility_of_all_elements_located(
 					(By.XPATH, '//div[@id="content"]//img')
 				)
@@ -31,7 +30,7 @@ class TestDynamicContent(BaseTest):
 			profile_pics.append(
 				[element.get_attribute('src') for element in current_pics]
 			)
-			current_desc = WebDriverWait(self.driver, 2).until(
+			current_desc = self.wait.until(
 				EC.visibility_of_all_elements_located(
 					(
 						By.XPATH,

@@ -9,10 +9,8 @@ class TestDynamicControls(BaseTest):
 	page_url = '/dynamic_controls'
 
 	def test_disappearing_checkbox(self):
-		WebDriverWait(self.driver, 2).until(
-			EC.visibility_of_element_located((By.ID, 'checkbox'))
-		)
-		button_toggle_checkbox = WebDriverWait(self.driver, 2).until(
+		self.wait.until(EC.visibility_of_element_located((By.ID, 'checkbox')))
+		button_toggle_checkbox = self.wait.until(
 			EC.element_to_be_clickable(
 				(By.XPATH, '//form[@id="checkbox-example"]//button')
 			)
@@ -27,13 +25,13 @@ class TestDynamicControls(BaseTest):
 		)
 
 	def test_disabled_input(self):
-		input_field = WebDriverWait(self.driver, 2).until(
+		input_field = self.wait.until(
 			EC.visibility_of_element_located(
 				(By.XPATH, '//form[@id="input-example"]//input')
 			)
 		)
 		assert not input_field.is_enabled()
-		button_toggle_input = WebDriverWait(self.driver, 2).until(
+		button_toggle_input = self.wait.until(
 			EC.visibility_of_element_located(
 				(By.XPATH, '//form[@id="input-example"]//button')
 			)
