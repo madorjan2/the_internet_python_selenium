@@ -23,8 +23,12 @@ jobs:
           pip install --upgrade setuptools
           pip install -r requirements.txt
 
-      - name: Installing and running Ruff
+      - name: Installing Ruff
         uses: astral-sh/ruff-action@v3
+        with:
+          args: "--version"
+
+      - name: Run Ruff check and format
         run: |
           ruff check --fix
           ruff format
