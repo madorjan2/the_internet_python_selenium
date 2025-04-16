@@ -1,3 +1,5 @@
+# ToDo: Flaky, sometimes the third image does not load with the first two
+
 from utils.base_test import BaseTest
 
 from selenium.webdriver.common.by import By
