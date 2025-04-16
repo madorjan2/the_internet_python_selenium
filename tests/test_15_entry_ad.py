@@ -1,5 +1,5 @@
-
 import time
+import pytest
 
 from utils.base_test import BaseTest
 
@@ -13,6 +13,7 @@ class TestEntryAd(BaseTest):
 
 	# ToDo: find way to remove time.sleep
 	# ToDo: flaky at the last WebDriverWait in headless for some reason
+	@pytest.mark.flaky(reruns=3)
 	def test_entry_ad(self):
 		# JS click is needed, because WebElement.click() leads to ElementClickInterceptedException sometimes
 		# element click intercepted: Element <p>...</p> is not clickable at point (949, 592). Other element would receive the click: <div class="modal">...</div>

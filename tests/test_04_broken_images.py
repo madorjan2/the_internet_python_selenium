@@ -1,4 +1,4 @@
-# ToDo: Flaky, sometimes the third image does not load with the first two
+import pytest
 
 from utils.base_test import BaseTest
 
@@ -29,6 +29,8 @@ class TestBrokenImages(BaseTest):
 		)
 		assert not loaded
 
+	# ToDo: Flaky, sometimes the third image does not load with the first two
+	@pytest.mark.flaky(reruns=3)
 	def test_third_image_is_not_broken(self):
 		img = self.get_nth_image(2)
 		loaded = self.driver.execute_script(
