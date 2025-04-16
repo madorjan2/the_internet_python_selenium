@@ -1,12 +1,14 @@
 from utils.base_test import BaseTest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
 import time
 
 
 class TestEntryAd(BaseTest):
-	page_url = 'http://localhost:7080/entry_ad'
+	page_url = '/entry_ad'
 
 	def test_entry_ad(self):
 		# JS click is needed, because WebElement.click() leads to ElementClickInterceptedException sometimes
