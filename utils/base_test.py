@@ -14,6 +14,7 @@ def clear_download_directory():
 		file_path = os.path.join(path, filename)
 		os.remove(file_path)
 
+
 class BaseTest(object):
 	page_url = None
 
