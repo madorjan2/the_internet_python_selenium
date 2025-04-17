@@ -4,6 +4,7 @@ from utils.create_driver import create_chrome_driver
 
 from selenium.webdriver.support.wait import WebDriverWait
 
+DEV_MODE = False
 
 def clear_download_directory():
 	this_folder_path = os.path.abspath(
@@ -22,9 +23,13 @@ class BaseTest(object):
 		clear_download_directory()
 
 	def setup_method(self):
-		self.driver = create_chrome_driver()
+		if DEV_MODE:
+			self.driver = create_chrome_driver(dev_mode=DEV_MODE)
+		else:
+			self.driver = create_chrome_driver()
 		self.driver.get('http://localhost:7080' + self.page_url)
 		self.wait = WebDriverWait(self.driver, 5)
 
 	def teardown_method(self):
-		self.driver.quit()
+		if not DEV_MODE:
+			self.driver.quit()

@@ -4,6 +4,7 @@ from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver_wired
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 valid_auth = base64.encodebytes('admin:admin'.encode()).decode().strip()
@@ -19,8 +20,10 @@ def invalid_interceptor(request):
 
 
 class TestBasicAuth(BaseTest):
+
 	def setup_method(self):
 		self.driver = create_chrome_driver_wired()
+		self.wait = WebDriverWait(self.driver, 5)
 
 	def test_valid_login(self):
 		self.driver.request_interceptor = valid_interceptor
