@@ -2,7 +2,7 @@ from utils.base_test import BaseTest
 from utils.create_driver import create_chrome_driver_capturing_logs
 
 
-class TestInputs(BaseTest):
+class TestErrors(BaseTest):
 	page_url = '/javascript_error'
 
 	def setup_method(self):

@@ -17,7 +17,7 @@ different_name_mappings = {
 }
 
 
-class TestInputs(BaseTest):
+class TestKeyPresses(BaseTest):
 	page_url = '/key_presses'
 
 	def get_result_text(self):

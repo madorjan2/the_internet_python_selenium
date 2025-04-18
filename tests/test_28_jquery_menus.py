@@ -23,7 +23,7 @@ def is_file_downloaded(filename):
 	return is_file_present_in_downloads(filename)
 
 
-class TestInputs(BaseTest):
+class TestJQueryMenus(BaseTest):
 	page_url = '/jqueryui/menu'
 
 	# we get ElementClickIntercepted if we try to click regularly, therefore Javascript clicking is necessary

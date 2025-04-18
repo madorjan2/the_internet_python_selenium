@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 
-class TestInputs(BaseTest):
+class TestAlerts(BaseTest):
 	page_url = '/javascript_alerts'
 
 	def get_result_text(self):
