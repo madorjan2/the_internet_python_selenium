@@ -26,8 +26,9 @@ def is_file_downloaded(filename):
 class TestInputs(BaseTest):
 	page_url = '/jqueryui/menu'
 
-	def click_jquery_element_by_id(self, id):
-		button = self.wait.until(EC.element_to_be_clickable((By.ID, id)))
+	# we get ElementClickIntercepted if we try to click regularly, therefore Javascript clicking is necessary
+	def click_jquery_element_by_id(self, eid):
+		button = self.wait.until(EC.element_to_be_clickable((By.ID, eid)))
 		self.driver.execute_script('arguments[0].click();', button)
 
 	# in the JQuery menu, the button is considered enabled by Selenium even when disabled
@@ -41,7 +42,6 @@ class TestInputs(BaseTest):
 			'class'
 		)
 
-	# we get ElementClickIntercepted if we try to click regularly, therefore Javascript clicking is necessary
 	def test_download_pdf(self):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-4')

@@ -20,7 +20,6 @@ def invalid_interceptor(request):
 
 
 class TestBasicAuth(BaseTest):
-
 	def setup_method(self):
 		self.driver = create_chrome_driver_wired()
 		self.wait = WebDriverWait(self.driver, 5)

@@ -6,6 +6,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 DEV_MODE = False
 
+
 def clear_download_directory():
 	this_folder_path = os.path.abspath(
 		os.path.join(os.path.realpath(__file__), os.pardir)

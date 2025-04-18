@@ -45,3 +45,27 @@ def create_chrome_driver_wired(dev_mode=False):
 	else:
 		driver.maximize_window()
 	return driver
+
+
+def create_chrome_driver_capturing_logs(loglevel='SEVERE', dev_mode=False):
+	options = ChromeOptions()
+	options.add_experimental_option('detach', True)
+	options.add_argument('disable-search-engine-choice-screen')
+	options.add_experimental_option(
+		'prefs',
+		{
+			'download.default_directory': path,
+			'download.prompt_for_download': False,
+			'download.directory_upgrade': True,
+			'safebrowsing.enabled': True,
+		},
+	)
+	options.set_capability('goog:loggingPrefs', {'browser': loglevel})
+	if not dev_mode:
+		options.add_argument('--headless')
+	driver = webdriver.Chrome(options=options)
+	if not dev_mode:
+		driver.set_window_size(1920, 1080)
+	else:
+		driver.maximize_window()
+	return driver
