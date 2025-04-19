@@ -18,6 +18,7 @@ def clear_download_directory():
 
 
 class BaseTest(object):
+	base_url = 'http://localhost:7080'
 	page_url = None
 
 	def setup_class(self):
@@ -28,7 +29,7 @@ class BaseTest(object):
 			self.driver = create_chrome_driver(dev_mode=DEV_MODE)
 		else:
 			self.driver = create_chrome_driver()
-		self.driver.get('http://localhost:7080' + self.page_url)
+		self.driver.get(self.base_url + self.page_url)
 		self.wait = WebDriverWait(self.driver, 5)
 
 	def teardown_method(self):
