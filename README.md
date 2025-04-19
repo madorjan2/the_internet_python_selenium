@@ -21,4 +21,4 @@ This repository contains automated test scripts written in Python using the Sele
 
 1. **Fork the repository.** Click the "Fork" button at the top right of the repository page on GitHub to create a copy under your account.
 2. **Make a change and commit on GitHub.** You can do this directly through the GitHub web interface.
-3. **Observe the GitHub Action running.** After you make a commit to your forked repository, the GitHub Actions workflow defined in `.github/workflows/main.yml` will automatically be triggered.
+3. **Observe the GitHub Action running.** After you make a commit to your forked repository, the GitHub Actions workflow defined in `.github/workflows/action.yml` will automatically be triggered.
