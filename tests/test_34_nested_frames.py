@@ -8,11 +8,15 @@ class TestNestedFrames(BaseTest):
 	page_url = '/nested_frames'
 
 	def switch_to_frame_with_name(self, name):
-		target_frame = self.wait.until(EC.presence_of_element_located((By.NAME, name)))
+		target_frame = self.wait.until(
+			EC.presence_of_element_located((By.NAME, name))
+		)
 		self.driver.switch_to.frame(target_frame)
 
 	def get_body_text(self):
-		return self.wait.until(EC.presence_of_element_located((By.TAG_NAME, 'body'))).text
+		return self.wait.until(
+			EC.presence_of_element_located((By.TAG_NAME, 'body'))
+		).text
 
 	def test_nested_frames(self):
 		self.switch_to_frame_with_name('frame-top')
