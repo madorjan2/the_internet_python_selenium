@@ -1,5 +1,6 @@
 import os
 import time
+import pytest
 
 from utils.base_test import BaseTest
 
@@ -35,6 +36,7 @@ def get_test_data():
 class TestFileDownload(BaseTest):
 	page_url = '/download'
 
+	@pytest.mark.xdist_group(name="sequential")
 	def test_file_download(self):
 		self.wait.until(
 			EC.element_to_be_clickable((By.LINK_TEXT, 'some-file.txt'))
