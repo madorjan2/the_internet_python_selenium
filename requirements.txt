@@ -1,7 +1,7 @@
-selenium
-pytest
-pytest-rerunfailures
-selenium-wire
-blinker==1.7.0
-pytesseract
+selenium~=4.10.0
+pytest~=7.4.2
+pytest-rerunfailures~=10.3
+selenium-wire~=5.1.0
+blinker~=1.7.0
+pytesseract~=0.3.10
 pytest-xdist~=3.6.1
