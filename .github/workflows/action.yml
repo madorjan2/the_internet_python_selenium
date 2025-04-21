@@ -39,7 +39,7 @@ jobs:
 
       - name: Create downloads directory
         run: |
-          mkdir -p .\tests\downloads
+          mkdir -p ./tests/downloads
 
       - name: Run pytest
         run: |
