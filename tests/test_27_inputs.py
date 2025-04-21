@@ -16,13 +16,11 @@ class TestInputs(BaseTest):
 			EC.element_to_be_clickable((By.TAG_NAME, 'input'))
 		)
 
-	@pytest.mark.dependency()
 	@pytest.mark.xdist_group(name='input')
 	def test_accepts_input(self):
 		self.input_field.send_keys('123')
 		assert self.input_field.get_property('value') == '123'
 
-	@pytest.mark.dependency(depends=['TestInputs::test_accepts_input'])
 	@pytest.mark.xdist_group(name='input')
 	def test_arrow_keys(self):
 		self.input_field.send_keys('123')
