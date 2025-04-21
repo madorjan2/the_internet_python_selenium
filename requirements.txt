@@ -5,3 +5,4 @@ pytest-rerunfailures
 selenium-wire
 blinker==1.7.0
 pytesseract
+pytest-xdist~=3.6.1
