@@ -44,21 +44,21 @@ class TestJQueryMenus(BaseTest):
 			'class'
 		)
 
-	@pytest.mark.xdist_group(name="sequential")
+	@pytest.mark.xdist_group(name='sequential')
 	def test_download_pdf(self):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-4')
 		self.click_jquery_element_by_id('ui-id-6')
 		assert is_file_downloaded('menu.pdf')
 
-	@pytest.mark.xdist_group(name="sequential")
+	@pytest.mark.xdist_group(name='sequential')
 	def test_download_csv(self):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-4')
 		self.click_jquery_element_by_id('ui-id-7')
 		assert is_file_downloaded('menu.csv')
 
-	@pytest.mark.xdist_group(name="sequential")
+	@pytest.mark.xdist_group(name='sequential')
 	def test_download_excel(self):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-4')

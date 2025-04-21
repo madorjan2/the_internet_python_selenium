@@ -1,5 +1,5 @@
-from datetime import datetime
 from pprint import pprint
+from time import perf_counter
 
 from utils.create_driver import create_chrome_driver
 
@@ -56,26 +56,26 @@ def get_locator_performances(locators, driver=None):
 	)
 
 	for i, direct_locator in enumerate(locators['direct']):
-		start_time = datetime.now()
+		t1_start = perf_counter()
 		assert (
 			driver.find_element(
 				direct_locator['by'], direct_locator['value']
 			).text
 			== locators['expected']
 		)
-		end_time = datetime.now()
-		locators['direct'][i]['time'] = (end_time - start_time).microseconds
+		t1_end = perf_counter()
+		locators['direct'][i]['time'] = t1_end - t1_start
 
 	for i, indirect_locator in enumerate(locators['indirect']):
-		start_time = datetime.now()
+		t1_start = perf_counter()
 		assert (
 			driver.find_elements(
 				indirect_locator['by'], indirect_locator['value']
 			)[indirect_locator['index']].text
 			== locators['expected']
 		)
-		end_time = datetime.now()
-		locators['indirect'][i]['time'] = (end_time - start_time).microseconds
+		t1_end = perf_counter()
+		locators['indirect'][i]['time'] = t1_end - t1_start
 
 	return locators
 
