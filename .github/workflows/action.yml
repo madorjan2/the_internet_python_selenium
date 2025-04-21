@@ -37,6 +37,10 @@ jobs:
         run: |
           docker run -d -p 7080:5000 gprestes/the-internet
 
+      - name: Create downloads directory
+        run: |
+          mkdir -p .\tests\downloads
+
       - name: Run pytest
         run: |
           PYTHONPATH=$PYTHONPATH:$(pwd)/utils pytest ./tests
