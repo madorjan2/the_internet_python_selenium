@@ -17,11 +17,13 @@ class TestInputs(BaseTest):
 		)
 
 	@pytest.mark.dependency()
+	@pytest.mark.xdist_group(name='input')
 	def test_accepts_input(self):
 		self.input_field.send_keys('123')
 		assert self.input_field.get_property('value') == '123'
 
 	@pytest.mark.dependency(depends=['TestInputs::test_accepts_input'])
+	@pytest.mark.xdist_group(name='input')
 	def test_arrow_keys(self):
 		self.input_field.send_keys('123')
 		self.input_field.send_keys(Keys.ARROW_UP)
