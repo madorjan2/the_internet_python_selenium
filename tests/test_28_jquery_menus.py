@@ -47,11 +47,14 @@ class TestJQueryMenus(BaseTest):
 			'class'
 		)
 
-	@pytest.mark.parametrize('file_type, element_id', [
-            ('menu.pdf', 'ui-id-6'),
-            ('menu.csv', 'ui-id-7'),
-            ('menu.xls', 'ui-id-8'),
-        ])
+	@pytest.mark.parametrize(
+		'file_type, element_id',
+		[
+			('menu.pdf', 'ui-id-6'),
+			('menu.csv', 'ui-id-7'),
+			('menu.xls', 'ui-id-8'),
+		],
+	)
 	def test_download_file(self, file_type, element_id):
 		self.click_jquery_element_by_id('ui-id-2')
 		self.click_jquery_element_by_id('ui-id-4')

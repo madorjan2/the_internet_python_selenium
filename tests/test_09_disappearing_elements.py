@@ -17,19 +17,14 @@ class TestDisappearingElements(BaseTest):
 		except TimeoutException:
 			return False
 
+	def get_number_of_reloads(self, is_present):
+		"""Reloads the page until the gallery is present or 100 times.
+		Returns the number of reloads."""
+		counter = 0
+		while is_present == self.is_gallery_present() and counter < 100:
+			self.driver.refresh()
+			counter += 1
+		return counter
+
 	def test_reload(self):
-		is_present = self.is_gallery_present()
-		if is_present:
-			counter = 0
-			while is_present and counter < 100:
-				self.driver.refresh()
-				is_present = self.is_gallery_present()
-				counter += 1
-			assert counter < 100
-		else:
-			counter = 0
-			while not is_present and counter < 100:
-				self.driver.refresh()
-				is_present = self.is_gallery_present()
-				counter += 1
-			assert counter < 100
+		assert self.get_number_of_reloads(self.is_gallery_present()) < 100
