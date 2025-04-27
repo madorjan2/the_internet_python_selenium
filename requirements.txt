@@ -1,4 +1,4 @@
-selenium~=4.16.0
+selenium~=4.31.0
 pytest~=8.3.5
 pytest-rerunfailures~=15.0
 selenium-wire~=5.1.0
