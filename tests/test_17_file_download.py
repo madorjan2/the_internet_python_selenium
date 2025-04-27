@@ -8,16 +8,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 
 
-def get_downloaded_data():
+def get_downloaded_data(timeout=5, polling_interval=0.2):
 	this_folder_path = os.path.abspath(
 		os.path.join(os.path.realpath(__file__), os.pardir)
 	)
 	path = os.path.join(this_folder_path, 'downloads', 'some-file.txt')
-	failsafe = 0
-	while not os.path.exists(path) and failsafe < 10:
-		time.sleep(0.2)
-		failsafe += 1
-	if failsafe >= 10:
+	start_time = time.monotonic()
+	while not os.path.exists(path) and time.monotonic() - start_time < timeout:
+		time.sleep(polling_interval)
+	if not os.path.exists(path):
 		raise FileNotFoundError(f'File could not be found: {path}')
 	else:
 		with open(path, 'r') as f:
