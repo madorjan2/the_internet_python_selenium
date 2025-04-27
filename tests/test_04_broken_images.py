@@ -9,7 +9,7 @@ from selenium.webdriver.common.by import By
 class TestBrokenImages(BaseTest):
 	page_url = '/broken_images'
 
-	def get_nth_image(self, index, timeout=5):
+	def get_nth_image(self, index, timeout=5, poll_frequency=0.2):
 		loaded = False
 		start_time = time.monotonic()
 		imgs = []
@@ -18,6 +18,7 @@ class TestBrokenImages(BaseTest):
 				By.XPATH, '//div[@id="content"]//img'
 			)
 			loaded = len(imgs) >= index + 1
+			time.sleep(poll_frequency)
 		if not loaded:
 			pytest.fail(f'Image not loaded in time with index {index}')
 		return imgs[index]
