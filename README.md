@@ -1,20 +1,21 @@
-# Selenium Python Automation for The Internet Heroku App
+# Selenium Python Automation for The Internet
 
 [![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
 [![Selenium](https://img.shields.io/badge/Selenium-4.x-orange.svg)](https://www.selenium.dev/)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-Enabled-brightgreen.svg)
 
-This repository contains automated test scripts written in Python using the Selenium library to test various scenarios on "The Internet" Heroku application ([https://the-internet.herokuapp.com/](https://the-internet.herokuapp.com/)). It also includes a complete GitHub Actions workflow for Continuous Integration and Continuous Delivery (CI/CD), automatically setting up the testing environment and running the tests upon code changes.
+This repository contains automated test scripts written in Python using the Selenium library to test various scenarios on "The Internet" test automation practice application ([https://the-internet.herokuapp.com/](https://the-internet.herokuapp.com/)). It also includes a complete GitHub Actions workflow for Continuous Integration (CI), automatically setting up the testing environment and running the tests upon code changes.
 
 ## Features
 
 - **Comprehensive Test Coverage:** Includes test scripts for various interactive elements and functionalities.
-- **GitHub Actions Integration:** Fully automated CI/CD pipeline that:
+- **GitHub Actions Integration:** Fully automated CI workflow that:
     - Checks out the code.
     - Sets up Python environment.
     - Sets up Docker container for The Internet.
     - Installs necessary dependencies.
     - Runs the Selenium tests in a headless browser.
-- **Headless Browser Execution:** Tests are configured to run in a headless browser, making them suitable for CI/CD environments.
+- **Headless Browser Execution:** Tests are configured to run in a headless browser, making them suitable for CI environments.
 - **Easy Setup:** Simple instructions to get the project running locally.
 
 ## Usage
